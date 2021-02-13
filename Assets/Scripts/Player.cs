@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
 
+    private bool death = false;
     
     [Header("Player Regen System")]
     public bool regenEnabled_HP = true;
@@ -43,8 +44,8 @@ public class Player : MonoBehaviour
         entity.maxMana = gameManager.calculateMana(entity);
         entity.maxStamina = gameManager.calculateStamina(entity);
 
-        int damage = gameManager.calculateDamage(entity, 10); //usado no player
-        int defense = gameManager.calculateDefense(entity, 8); //usado no inimigo
+        // int damage = gameManager.calculateDamage(entity, 10); //usado no player
+        // int defense = gameManager.calculateDefense(entity, 8); //usado no inimigo
 
         //Set values initials with max values
         entity.currentHealth = entity.maxHealth;
@@ -75,13 +76,6 @@ public class Player : MonoBehaviour
         health.value = entity.currentHealth;
         mana.value = entity.currentMana;
         stamina.value = entity.currentStamina;
-
-
-        if(Input.GetKeyDown(KeyCode.Space)){
-            entity.currentHealth -= 10;
-            entity.currentMana -= 10;
-            entity.currentStamina -= 10;
-        }
     }
 
     IEnumerator regenHealth(){
